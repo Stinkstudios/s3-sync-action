@@ -46,8 +46,7 @@ sh -c "aws s3 sync ${SOURCE_DIR:-.} s3://${AWS_S3_BUCKET}/${DEST_DIR} \
 
 # If a AWS_CF_DISTRIBUTION_ID was given, create an invalidation for it.
 if [ -n "$AWS_CF_DISTRIBUTION_ID" ]; then
-      sh -c "aws cloudfront create-invalidation --distribution-id
-      ${AWS_CF_DISTRIBUTION_ID} --paths '/*' --profile s3-sync-action"
+      sh -c "aws cloudfront create-invalidation --distribution-id ${AWS_CF_DISTRIBUTION_ID} --paths '/*' --profile s3-sync-action"
 fi
 
 # Clear out credentials after we're done.
